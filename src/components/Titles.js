@@ -1,8 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Item } from './Item';
+import { render } from '@testing-library/react';
 
+function renderItem(data){
+    return(
+        <Item 
+            value={data.title}
+            id={data.id}
+        />
+    );
+}
 
-function Page() {
+function Titles() {
     const [pages, setPages] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -16,7 +26,7 @@ function Page() {
                 setLoading(true);
     
                 const response = await axios.get(
-                    'http://localhost:9999/pages'
+                    'http://localhost:9999/titles'
                 );
                 setPages(response.data);
             }catch(e){
@@ -39,12 +49,10 @@ function Page() {
     return(
         <ul>
             {pages.map( page => (
-                <li key={page.id}>
-                    {page.title} ({page.description})
-                </li>
+                renderItem(page)
             ))}
         </ul>
     );
 }
 
-export default Page;
+export default Titles;

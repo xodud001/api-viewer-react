@@ -1,5 +1,4 @@
 import React from 'react'
-import Page from './Page'
 
 class Detail extends React.Component{
     renderMain(){
@@ -19,7 +18,6 @@ class Detail extends React.Component{
         return(
             <div className="detail">
                 {this.renderMain()}
-                <Page />
             </div>
         );
     }
