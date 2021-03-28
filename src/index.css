@@ -1,6 +1,9 @@
-@import-properties;
 
 * {
+    margin : 0;
+    padding : 0;
+    color: white;
+    user-select: none;
     font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
 }
@@ -11,24 +14,140 @@
 }
 
 .list{
-    width: 200px;
+    width: 250px;
     height: 100vh;
-    background-color: red;
+    background-color: #1b1b1b;
 }
 
 .list input{
     margin-bottom: 5px;
 }
+.list ul{
+    background:#1b1b1b;
+    height: 100%;
+    width:100%;
+    list-style: none;
+}
 
-.list ul .item{
+.list ul li{
+    line-height: 45px;
+    border-bottom:1px solid rgba(255,255,255, 0.1);
+}
+
+.list ul li .item{
+    text-decoration: none;
+    color:white;
+    text-decoration: none;
+    font-size: 14px;
+    padding-left: 25px;
+    font-weight: 100;
     display: block;
-    width: 100%;
-    text-align: left;
-    height: 34px;
+    width : 100%;
+    border-left: 3px solid transparent;
+}
+.list ul .item:hover{
+    background-color: #1e1e1e;
+}
+.list ul li.active .item{
+    color: cyan;
+    background-color: #1e1e1e;
+    border-left-color: cyan;
 }
 
 .detail{
-    width : 100%;
+    width : 960px;
     height: 100vh;
-    background-color: blue;
+    background-color: white;
+    padding-left: 80px;
+    padding-top: 30px;
+}
+
+.detail div{
+    color : black !important;
+}
+
+.detail .page .top{
+    padding-bottom: 30px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.detail .page .top .title{
+    font-size: 32px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.detail .page .top .description{
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.4) !important;
+    font-weight: 500;
+}
+
+.detail .page .middle{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.detail .page .middle .type{
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin : 3px 0 3px 0;
+    padding: 0px 10px 0px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 12px;
+    color: white !important;
+    margin-right: 10px;
+}
+
+.detail .page .middle .post{
+    background-color: red;
+}
+
+.detail .page .middle .url{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 0px 5px 7px;
+    color: rgba(0, 0, 0, 0.8) !important;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.detail .page .bottom .wrapper{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding : 20px 15px 20px 15px;
+}
+
+.detail .page .bottom .wrapper ul{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding : 10px 5px 10px 5px;
+    display: flex;
+    align-items: center;
+}
+
+.detail .page .bottom .wrapper ul li{
+    color: black;
+}
+.detail .page .bottom .wrapper ul .name{
+    width: 150px;
+    color: rgba(0, 0, 0, 0.8);
+}
+.detail .page .bottom .wrapper ul .dataType{
+    margin-right: 20px;
+    padding: 2px 5px 2px 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.15);
+}
+.detail .page .bottom .wrapper ul .description{
+    color: rgba(0, 0, 0, 0.7);
 }

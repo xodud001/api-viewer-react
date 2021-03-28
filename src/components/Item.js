@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+
+import $ from "jquery";
 
 export function Item(props){
+    useEffect(()=>{
+        $('.list ul li').click(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+    });
     return(
-        <button className="item" value={props.id}>
-            {props.value}
-        </button>
+        <li>
+            <a href="#" className="item" onClick={props.onClick}>
+                {props.value}
+            </a>
+        </li>
     );
 }

@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Item } from './Item';
-import { render } from '@testing-library/react';
 
-function renderItem(data){
+function renderItem(data, onClick){
     return(
         <Item 
+            key={data.id}
             value={data.title}
-            id={data.id}
+            onClick={ () => onClick(data.id)}
         />
     );
 }
 
-function Titles() {
+function Titles(props) {
     const [pages, setPages] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -49,7 +49,7 @@ function Titles() {
     return(
         <ul>
             {pages.map( page => (
-                renderItem(page)
+                renderItem(page, props.onClick)
             ))}
         </ul>
     );

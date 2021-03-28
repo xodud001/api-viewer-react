@@ -7,9 +7,9 @@ class List extends React.Component{
 
     render(){
         return(
-            <div class ="list">
+            <div className="list">
                 <Search />
-                <Title />
+                <Title onClick={this.props.onClick}/>
             </div>
         );
     }
