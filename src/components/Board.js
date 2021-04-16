@@ -2,6 +2,7 @@ import React from 'react';
 import List from './List'
 import Detail from './Detail'
 import axios from 'axios';
+import {createURL} from './Server'
 
 class Board extends React.Component{
     
@@ -17,7 +18,7 @@ class Board extends React.Component{
     async handleClick(value){
         let data = null;
         axios.get(
-            'http://localhost:9999/page/'+ value
+            createURL(`/page/`) + value
         ).then(response => {
             data = response.data;
             this.setState({

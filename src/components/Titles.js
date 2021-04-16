@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Item } from './Item';
+import { createURL } from './Server'
 
 function renderItem(data, onClick){
     return(
@@ -26,7 +27,7 @@ function Titles(props) {
                 setLoading(true);
     
                 const response = await axios.get(
-                    'http://localhost:9999/titles'
+                    createURL(`/titles`)
                 );
                 setPages(response.data);
             }catch(e){
