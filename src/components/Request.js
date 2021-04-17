@@ -5,6 +5,8 @@ function typeToString(type){
       return "string";
     case '2':
       return "long";
+    case '3':
+      return "LocalDate";
     default:
       return "null";
 

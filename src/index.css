@@ -147,12 +147,35 @@ body{
     border-radius: 5px;
 }
 
-.detail .page .bottom .wrapper ul{
+.detail .page .bottom .params-wrapper{
+    margin-bottom: 30px;
+}
+.detail .page .bottom .params-wrapper:last-child{
+    margin-bottom: 0px !important;
+}
+
+.detail .page .bottom .params-wrapper .params-title{
+    margin-left: 5px;
+    color :rgba(0, 0, 0, 0.8) !important;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.detail .page .bottom .param-wrapper{
     border: 1px solid rgba(0, 0, 0, 0.1);
-    padding : 10px 5px 10px 5px;
+    padding : 10px 10px 0px 10px;
+    border-radius: 5px;
+    
+}
+
+.detail .page .bottom .param-wrapper ul{
+    padding : 0px 0px 30px 0px;
     display: flex;
     align-items: center;
-    border-radius: 5px;
+}
+
+.detail .page .bottom .param-wrapper ul:last-child{
+    padding : 0px 0px 10px 0px !important;
 }
 
 .detail .page .bottom .wrapper ul li{

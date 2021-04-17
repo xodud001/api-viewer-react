@@ -1,4 +1,3 @@
-import { param } from 'jquery';
 import React from 'react';
 import ParamWrapper from './ParamWrapper'
 
@@ -22,23 +21,13 @@ const Type = (props) => {
 
 class Page extends React.Component{
     
-    constructor(props){
-        super(props);
-        this.params = Array.from(Array(5)).forEach(arr => arr = [{}]);
-    }
-
-    sortParams(params){
-        for(let i = 0 ; i < params.length ; i++){
-            const value = params[i];
-            console.log(value);
-            this.params[value.parameterType].push(value);
-        }
-    }
-
     render(){
-        this.params = Array.from(Array(5)).forEach(arr => arr = [{}]);
-        this.sortParams(this.props.page.params);
-
+        let path = this.props.page.params.filter(param => param.parameterType === 0);
+        let query = this.props.page.params.filter(param => param.parameterType === 1);
+        let form = this.props.page.params.filter(param => param.parameterType === 2);
+        let body = this.props.page.params.filter(param => param.parameterType === 3);
+        let header = this.props.page.params.filter(param => param.parameterType === 4);
+        
         if(this.props.page){
             return(
                 <div className="page">
@@ -52,11 +41,11 @@ class Page extends React.Component{
                     </section>
                     <section className="bottom">
                         <div className="wrapper">
-                            {
-                                this.params.forEach(params => (
-                                    params.length > 0 ? <ParamWrapper params = {params}/> : ""
-                                ))
-                            }
+                            {path.length > 0 && <ParamWrapper params={path} type={0}/>}
+                            {query.length > 0 && <ParamWrapper params={query} type={1}/>}
+                            {form.length > 0 && <ParamWrapper params={form} type={2}/>}
+                            {body.length > 0 && <ParamWrapper params={body} type={3}/>}
+                            {header.length > 0 && <ParamWrapper params={header} type={4}/>}
                         </div>
                     </section>
                 </div>
