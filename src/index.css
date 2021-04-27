@@ -8,19 +8,44 @@
     box-sizing: border-box;
 }
 
-body{
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
 .board{
     display: flex;
     flex-direction: row;
 }
-
+body::-webkit-scrollbar{
+    width: 10px;
+    background-color: #ffffff;
+}
+body::-webkit-scrollbar-thumb{
+    background-color: #c0c0c0;
+    border-radius: 10px;
+    background-clip: padding-box;
+}
+body::-webkit-scrollbar-track {
+    background-color: rgb(255, 255, 255);
+}
 .list{
+    position: fixed;
     width: 250px;
-    height: 100vh;
+    max-height: 100vh;
     background-color: #1b1b1b;
+    overflow-y: auto;
+    top: 0;
+    bottom: 0;
+}
+
+.list::-webkit-scrollbar{
+    width: 7px;
+    background-color: #747474;
+}
+.list::-webkit-scrollbar-thumb{
+    background-color: #424242;
+    border-radius: 10px;
+    background-clip: padding-box;
+}
+.list::-webkit-scrollbar-track {
+    background-color: grey;
+    box-shadow: inset 0px 0px 5px rgb(218, 218, 218);
 }
 
 .list input{
@@ -71,7 +96,7 @@ body{
     width : 960px;
     height: 100vh;
     background-color: white;
-    padding-left: 50px;
+    padding-left: 300px;
     padding-top: 60px;
 }
 
