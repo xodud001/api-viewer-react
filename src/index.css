@@ -8,10 +8,6 @@
     box-sizing: border-box;
 }
 
-.board{
-    display: flex;
-    flex-direction: row;
-}
 body::-webkit-scrollbar{
     width: 10px;
     background-color: #ffffff;
@@ -24,6 +20,12 @@ body::-webkit-scrollbar-thumb{
 body::-webkit-scrollbar-track {
     background-color: rgb(255, 255, 255);
 }
+
+.board{
+    display: flex;
+    flex-direction: row;
+}
+
 .list{
     position: fixed;
     width: 250px;
@@ -93,7 +95,7 @@ body::-webkit-scrollbar-track {
 }
 
 .detail{
-    width : 960px;
+    width : 1200px;
     height: 100vh;
     background-color: white;
     padding-left: 300px;
@@ -211,6 +213,8 @@ body::-webkit-scrollbar-track {
     color: rgba(0, 0, 0, 0.8);
 }
 .detail .page .bottom .wrapper ul .dataType{
+    width: 60px;
+    text-align: center;
     margin-right: 20px;
     padding: 3px 10px 3px 10px;
     font-size: 12px;
@@ -221,5 +225,6 @@ body::-webkit-scrollbar-track {
     letter-spacing: 1px;
 }
 .detail .page .bottom .wrapper ul .description{
+    max-width: 600px;
     color: rgba(0, 0, 0, 0.7);
 }

@@ -6,9 +6,9 @@ import { createURL } from './Server'
 function renderItem(data, onClick){
     return(
         <Item 
-            key={data.id}
+            key={data.pageId}
             value={data.title}
-            onClick={ () => onClick(data.id)}
+            onClick={ () => onClick(data.pageId)}
         />
     );
 }

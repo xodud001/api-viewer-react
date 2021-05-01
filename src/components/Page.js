@@ -22,11 +22,11 @@ const Type = (props) => {
 class Page extends React.Component{
     
     render(){
-        let path = this.props.page.params.filter(param => param.parameterType === 0);
-        let query = this.props.page.params.filter(param => param.parameterType === 1);
-        let form = this.props.page.params.filter(param => param.parameterType === 2);
-        let body = this.props.page.params.filter(param => param.parameterType === 3);
-        let header = this.props.page.params.filter(param => param.parameterType === 4);
+        let path = this.props.page.parameters.filter(param => param.parameterType.paramId === 1);
+        let query = this.props.page.parameters.filter(param => param.parameterType.paramId === 2);
+        let form = this.props.page.parameters.filter(param => param.parameterType.paramId === 3);
+        let body = this.props.page.parameters.filter(param => param.parameterType.paramId === 4);
+        let header = this.props.page.parameters.filter(param => param.parameterType.paramId === 5);
         
         if(this.props.page){
             return(
@@ -36,16 +36,16 @@ class Page extends React.Component{
                         <Content class={"description"} value={this.props.page.description}/>
                     </section>
                     <section className="middle">
-                        <Type class={"type"} value={this.props.page.crudType}/>
+                        <Type class={"type"} value={this.props.page.crudType.type}/>
                         <Content class={"url"} value={this.props.page.url}/>
                     </section>
                     <section className="bottom">
                         <div className="wrapper">
-                            {path.length > 0 && <ParamWrapper params={path} type={0}/>}
-                            {query.length > 0 && <ParamWrapper params={query} type={1}/>}
-                            {form.length > 0 && <ParamWrapper params={form} type={2}/>}
-                            {body.length > 0 && <ParamWrapper params={body} type={3}/>}
-                            {header.length > 0 && <ParamWrapper params={header} type={4}/>}
+                            {path.length > 0 && <ParamWrapper params={path} />}
+                            {query.length > 0 && <ParamWrapper params={query} />}
+                            {form.length > 0 && <ParamWrapper params={form} />}
+                            {body.length > 0 && <ParamWrapper params={body} />}
+                            {header.length > 0 && <ParamWrapper params={header} />}
                         </div>
                     </section>
                 </div>
