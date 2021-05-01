@@ -1,11 +1,12 @@
+
 import React from 'react';
 import ParamWrapper from './ParamWrapper'
 
+
+
 const Content = (props) => {
     return(
-        <div className={props.class}>
-            {props.value}
-        </div>
+        <input type="text" className={props.class} value={props.value} onChange={props.onChange} name={props.class}/>
     );
 }
 
@@ -20,7 +21,21 @@ const Type = (props) => {
 
 
 class Page extends React.Component{
-    
+
+    inputHandle(e){
+        var page = this.props.page;
+
+        switch(e.target.name){
+            case "title":
+                page.title = e.target.value;
+                this.props.changeData(page);
+                break;
+            default:
+                alert("none");
+                break;
+        }
+    }
+
     render(){
         let path = this.props.page.parameters.filter(param => param.parameterType.paramId === 1);
         let query = this.props.page.parameters.filter(param => param.parameterType.paramId === 2);
@@ -32,7 +47,12 @@ class Page extends React.Component{
             return(
                 <div className="page">
                     <section className="top">
-                        <Content class={"title"} value={this.props.page.title}/>
+                        <Content 
+                            class={"title"}
+                            page={ this.props.page }
+                            value={this.props.page.title}
+                            onChange={this.inputHandle.bind(this)}/>
+
                         <Content class={"description"} value={this.props.page.description}/>
                     </section>
                     <section className="middle">

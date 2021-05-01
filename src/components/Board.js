@@ -28,11 +28,23 @@ class Board extends React.Component{
         
 
     }
+
+    changeData(data){
+        this.setState({
+            page : data,
+        });
+    }
+
     render(){
         return (
             <div className="board">
-                <List onClick={ (i) => this.handleClick(i)}/>
-                <Detail page={this.state.page}/>
+                <List 
+                    onClick={ (i) => this.handleClick(i)}
+                    />
+                <Detail 
+                    page={this.state.page}
+                    changeData={ (data) => this.changeData(data)}
+                />
             </div>
         );
     }

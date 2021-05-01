@@ -5,7 +5,10 @@ class Detail extends React.Component{
     renderMain(){
         if(this.props.page){
             return(
-                <Page page={this.props.page} />
+                <Page 
+                    page={this.props.page}
+                    changeData={this.props.changeData}
+                />
             ); 
         }
         
