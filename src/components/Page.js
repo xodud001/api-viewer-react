@@ -2,13 +2,9 @@
 import React from 'react';
 import ParamWrapper from './ParamWrapper'
 
+import { Content } from './Content'
 
 
-const Content = (props) => {
-    return(
-        <input type="text" className={props.class} value={props.value} onChange={props.onChange} name={props.class}/>
-    );
-}
 
 const Type = (props) => {
     const type = props.value.toLowerCase();
@@ -21,20 +17,6 @@ const Type = (props) => {
 
 
 class Page extends React.Component{
-
-    inputHandle(e){
-        var page = this.props.page;
-
-        switch(e.target.name){
-            case "title":
-                page.title = e.target.value;
-                this.props.changeData(page);
-                break;
-            default:
-                alert("none");
-                break;
-        }
-    }
 
     render(){
         let path = this.props.page.parameters.filter(param => param.parameterType.paramId === 1);
@@ -51,21 +33,32 @@ class Page extends React.Component{
                             class={"title"}
                             page={ this.props.page }
                             value={this.props.page.title}
-                            onChange={this.inputHandle.bind(this)}/>
+                            onChange={this.props.changeData}
+                        />
 
-                        <Content class={"description"} value={this.props.page.description}/>
+                        <Content 
+                            class={"description"}
+                            page={ this.props.page }
+                            value={this.props.page.description}
+                            onChange={this.props.changeData}
+                        />
                     </section>
                     <section className="middle">
                         <Type class={"type"} value={this.props.page.crudType.type}/>
-                        <Content class={"url"} value={this.props.page.url}/>
+                        <Content 
+                            class={"url"} 
+                            page={ this.props.page }
+                            value={this.props.page.url}
+                            onChange={this.props.changeData}
+                        />
                     </section>
                     <section className="bottom">
                         <div className="wrapper">
-                            {path.length > 0 && <ParamWrapper params={path} />}
-                            {query.length > 0 && <ParamWrapper params={query} />}
-                            {form.length > 0 && <ParamWrapper params={form} />}
-                            {body.length > 0 && <ParamWrapper params={body} />}
-                            {header.length > 0 && <ParamWrapper params={header} />}
+                            {path.length > 0 && <ParamWrapper params={path} page={ this.props.page } changeData={this.props.changeData}/>}
+                            {query.length > 0 && <ParamWrapper params={query} page={ this.props.page } changeData={this.props.changeData}/>}
+                            {form.length > 0 && <ParamWrapper params={form} page={ this.props.page } changeData={this.props.changeData}/>}
+                            {body.length > 0 && <ParamWrapper params={body} page={ this.props.page } changeData={this.props.changeData}/>}
+                            {header.length > 0 && <ParamWrapper params={header} page={ this.props.page } changeData={this.props.changeData}/>}
                         </div>
                     </section>
                 </div>

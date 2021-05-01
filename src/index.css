@@ -73,7 +73,6 @@ input[type=text]:focus{
 }
 .list ul{
     background:#1b1b1b;
-    height: 100%;
     width:100%;
     list-style: none;
 }
