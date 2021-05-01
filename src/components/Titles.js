@@ -14,42 +14,31 @@ function renderItem(data, onClick){
 }
 
 function Titles(props) {
-    const [pages, setPages] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    // const [pages, setPages] = useState(null);
 
-    useEffect( () => {
-        const fetchPages = async () =>{
-            try{
-                setError(null);
-                setPages(null);
+    // useEffect( () => {
+    //     const fetchPages = async () =>{
+    //         try{
+    //             setPages(null);
     
-                setLoading(true);
-    
-                const response = await axios.get(
-                    createURL(`/titles`)
-                );
-                setPages(response.data);
-            }catch(e){
-                setError(e);
-            }
-            setLoading(false);
-        }
+    //             const response = await axios.get(
+    //                 createURL(`/titles`)
+    //             );
+    //             setPages(response.data);
+    //         }catch(e){
+    //             console.log(e)
+    //         }
+    //     }
         
-        fetchPages();
-    }, []);
+    //     fetchPages();
+    // }, []);
 
-    if(loading) return(
-        <div>로딩중...</div>
-    );
-    if(error) return(
-        <div>에러 발생</div>
-    );
-    if(!pages) return null;
-
+    // if(!pages) return null;
+    
+    if(!props.titles) return null;
     return(
         <ul>
-            {pages.map( page => (
+            {props.titles.map( page => (
                 renderItem(page, props.onClick)
             ))}
         </ul>

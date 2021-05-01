@@ -12,7 +12,16 @@ class Board extends React.Component{
 
         this.state ={
             page : null,
+            titles : null,
         };
+        axios.get(
+            createURL(`/titles/`)
+        ).then(response => {
+            var data = response.data;
+            this.setState({
+                titles : data,
+            });
+        });
     }
 
     async handleClick(value){
@@ -25,8 +34,18 @@ class Board extends React.Component{
                 page : data,
             });
         });
-        
+    }
 
+    createTitle(){
+        var titles = this.state.titles;
+        titles.push({
+            "pageId" : "uuid",
+            "title": "Rev init"
+        });
+        this.setState({
+            titles : titles
+        });
+        console.log('Create')
     }
 
     changeData(e){
@@ -43,7 +62,7 @@ class Board extends React.Component{
                 if(result[1]){
                     for(let i = 0 ; i < params.length ; i++){
                         let param = params[i];
-                        if(param.reqParamId.toString() === result[1]){
+                        if(param.reqParamId === result[1]){
                             param.description = e.target.value
                             params[i] = param;
                             newPage.parameters = params;
@@ -60,7 +79,7 @@ class Board extends React.Component{
                 
                 for(let i = 0 ; i < params.length ; i++){
                     let param = params[i];
-                    if(param.reqParamId.toString() === result[1]){
+                    if(param.reqParamId === result[1]){
                         param.name = e.target.value
                         params[i] = param;
                         newPage.parameters = params;
@@ -83,7 +102,9 @@ class Board extends React.Component{
             <div className="board">
                 <List 
                     onClick={ (i) => this.handleClick(i)}
-                    />
+                    createTitle={ this.createTitle.bind(this)}
+                    titles = {this.state.titles}
+                />
                 <Detail 
                     page={this.state.page}
                     changeData={ this.changeData.bind(this)}
