@@ -24,6 +24,8 @@ class List extends React.Component{
                 <Title
                     onClick={this.props.onClick}
                     titles={this.props.titles}
+                    isNewpage = {this.props.isNewpage}
+                    setNewPage = {this.props.setNewPage}
                 />
                 <Create createTitle={this.props.createTitle}/>
             </div>

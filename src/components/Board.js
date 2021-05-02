@@ -3,6 +3,8 @@ import List from './List'
 import Detail from './Detail'
 import axios from 'axios';
 import {createURL} from './Server'
+import { v4 as uuidv4 } from 'uuid';
+import $ from "jquery";
 
 class Board extends React.Component{
     
@@ -13,39 +15,83 @@ class Board extends React.Component{
         this.state ={
             page : null,
             titles : null,
+            createNewPage: false,
         };
         axios.get(
             createURL(`/titles/`)
         ).then(response => {
             var data = response.data;
+
             this.setState({
                 titles : data,
             });
+
         });
     }
 
-    async handleClick(value){
+    setNewPage(value){
+        this.setState({
+            createNewPage : value,
+        });
+    }
+
+    async handleClick(e){
+        let id = e.target.getAttribute('data-tag');
+        console.log(id) 
         let data = null;
         axios.get(
-            createURL(`/page/`) + value
+            createURL(`/page/`) + id
         ).then(response => {
             data = response.data;
             this.setState({
                 page : data,
             });
         });
+        
     }
 
     createTitle(){
         var titles = this.state.titles;
+        var defaultPage = {
+            pageId : uuidv4(),
+            title : "Init page",
+            description : "This is a init page",
+            url : "Enter url",
+            crudType : {
+                crudId : 1,
+                type : "GET"
+            },
+            parameters : [
+                {
+                    reqParamId : uuidv4(),
+                     name : "id",
+                    description : "Init id",
+                     dataType: {
+                        dataId : 1,
+                        type : "String"
+                    },
+                    parameterType : {
+                        paramId : 1,
+                        type : "Path Parameters"
+                    }
+                }
+            ]
+        }
+        // axios({
+        //     method: 'post',
+        //     url: createURL(`/page`),
+        //     data: defaultPage
+        // });
         titles.push({
-            "pageId" : "uuid",
-            "title": "Rev init"
+            pageId : defaultPage.pageId,
+            title: defaultPage.title,
         });
         this.setState({
-            titles : titles
+            titles : titles,
+            page: defaultPage,
+            createNewPage : true,
         });
-        console.log('Create')
+        
     }
 
     changeData(e){
@@ -104,6 +150,8 @@ class Board extends React.Component{
                     onClick={ (i) => this.handleClick(i)}
                     createTitle={ this.createTitle.bind(this)}
                     titles = {this.state.titles}
+                    isNewpage ={ this.state.createNewPage }
+                    setNewPage = {(i) => this.setNewPage(i)}
                 />
                 <Detail 
                     page={this.state.page}
