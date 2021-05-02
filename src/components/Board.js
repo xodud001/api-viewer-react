@@ -64,7 +64,7 @@ class Board extends React.Component{
             parameters : [
                 {
                     reqParamId : uuidv4(),
-                     name : "id",
+                    name : "id",
                     description : "Init id",
                      dataType: {
                         dataId : 1,
@@ -77,11 +77,11 @@ class Board extends React.Component{
                 }
             ]
         }
-        // axios({
-        //     method: 'post',
-        //     url: createURL(`/page`),
-        //     data: defaultPage
-        // });
+        axios({
+            method: 'post',
+            url: createURL(`/page`),
+            data: defaultPage
+        });
         titles.push({
             pageId : defaultPage.pageId,
             title: defaultPage.title,

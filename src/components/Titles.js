@@ -23,26 +23,6 @@ function Titles(props) {
             props.setNewPage(false);
         }
     });
-    // const [pages, setPages] = useState(null);
-
-    // useEffect( () => {
-    //     const fetchPages = async () =>{
-    //         try{
-    //             setPages(null);
-    
-    //             const response = await axios.get(
-    //                 createURL(`/titles`)
-    //             );
-    //             setPages(response.data);
-    //         }catch(e){
-    //             console.log(e)
-    //         }
-    //     }
-        
-    //     fetchPages();
-    // }, []);
-
-    // if(!pages) return null;
     
     if(!props.titles) return null;
     return(
