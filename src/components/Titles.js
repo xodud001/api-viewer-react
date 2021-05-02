@@ -1,16 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, {useEffect} from 'react';
 import { Item } from './Item';
-import { createURL } from './Server'
 import $ from "jquery";
 
-function renderItem(data, onClick){
+function renderItem(data, onClick, removeTitle){
     return(
         <Item 
             key={data.pageId}
             id={data.pageId}
             value={data.title}
             isFocus={data.isFocus}
+            removeTitle={ removeTitle }
             onClick={onClick}
         />
     );
@@ -28,7 +27,7 @@ function Titles(props) {
     return(
         <ul>
             {props.titles.map( page => (
-                renderItem(page, props.onClick)
+                renderItem(page, props.onClick, props.removeTitle)
             ))}
         </ul>
     );

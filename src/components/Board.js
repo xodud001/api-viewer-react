@@ -49,7 +49,37 @@ class Board extends React.Component{
         });
         
     }
+    removeTitle(e){
+        let id = e.target.getAttribute('data-tag');
 
+        axios({
+            method: 'delete',
+            url: createURL(`/page/`)+id
+        }).then(console.log(createURL(`/page/`)+id));
+
+        let titles = this.state.titles;
+        const title = titles.find( function(title){
+            console.log(`${title.pageId} === ${id}`)
+            return title.pageId === id;
+        });
+        const index = titles.indexOf(title);
+        titles.splice(index, 1);
+        
+        this.setState({
+            titles : titles,
+        });
+
+        axios.get(
+            createURL(`/page/`) + titles[0].pageId
+        ).then(response => {
+            let data = response.data;
+            this.setState({
+                page : data,
+            });
+        });
+        $('.board .list ul li:first-child').addClass("active").siblings().removeClass("active");
+        
+    }
     createTitle(){
         var titles = this.state.titles;
         var defaultPage = {
@@ -152,6 +182,7 @@ class Board extends React.Component{
                     titles = {this.state.titles}
                     isNewpage ={ this.state.createNewPage }
                     setNewPage = {(i) => this.setNewPage(i)}
+                    removeTitle = {(i) => this.removeTitle(i)}
                 />
                 <Detail 
                     page={this.state.page}

@@ -7,8 +7,8 @@ import Title from './Titles'
 function Create(props){
     return(
         <div id="create">
-            <button onClick={props.createTitle}> New</button>
-            <i class="fa fa-plus"></i>
+            <button onClick={props.createTitle} >New <i class="fa fa-plus"></i></button>
+            
         </div>
     );
         
@@ -26,6 +26,7 @@ class List extends React.Component{
                     titles={this.props.titles}
                     isNewpage = {this.props.isNewpage}
                     setNewPage = {this.props.setNewPage}
+                    removeTitle = {this.props.removeTitle}
                 />
                 <Create createTitle={this.props.createTitle}/>
             </div>

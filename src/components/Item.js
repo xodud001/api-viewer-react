@@ -15,6 +15,9 @@ export function Item(props){
             <a href="#" className="item" onClick={props.onClick} data-tag={props.id}>
                 {props.value}
             </a>
+            <button class="remove" onClick={props.removeTitle}>
+                <i class="fa fa-close fa-lg" data-tag={props.id}></i>
+            </button>
         </li>
     );
 }
