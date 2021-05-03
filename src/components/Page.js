@@ -61,6 +61,11 @@ class Page extends React.Component{
                             {header.length > 0 && <ParamWrapper params={header} page={ this.props.page } changeData={this.props.changeData}/>}
                         </div>
                     </section>
+                    <section className="save">
+                        <div>
+                            <button id="save" onClick={this.props.savePage}>SAVE</button>
+                        </div>
+                    </section>
                 </div>
             );
         }else{

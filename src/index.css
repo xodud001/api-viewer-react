@@ -305,3 +305,26 @@ button{
     max-width: 600px;
     color: rgba(0, 0, 0, 0.7);
 }
+
+.detail .page .save{
+    padding: 15px 0 15px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.detail .page .save #save{
+    border: 2px solid #4A4F47;
+    width: 100px;
+    font-size: 14px;
+    padding : 5px 0 5px 0;
+    background-color: transparent;
+    border-radius: 20px;
+    font-weight: 600;
+    color: #4A4F47;
+    transition: ease-in 0.1s;
+    outline: none;
+}
+
+.detail .page .save #save:hover{
+    background-color: #4A4F47;
+    color : white
+}

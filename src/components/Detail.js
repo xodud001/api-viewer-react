@@ -8,6 +8,7 @@ class Detail extends React.Component{
                 <Page 
                     page={this.props.page}
                     changeData={this.props.changeData}
+                    savePage={this.props.savePage}
                 />
             ); 
         }

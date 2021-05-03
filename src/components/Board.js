@@ -59,7 +59,6 @@ class Board extends React.Component{
 
         let titles = this.state.titles;
         const title = titles.find( function(title){
-            console.log(`${title.pageId} === ${id}`)
             return title.pageId === id;
         });
         const index = titles.indexOf(title);
@@ -80,6 +79,27 @@ class Board extends React.Component{
         $('.board .list ul li:first-child').addClass("active").siblings().removeClass("active");
         
     }
+
+    savePage(){
+        var pageId = this.state.page.pageId;
+        axios({
+            method: 'patch',
+            url: createURL(`/page`),
+            data: this.state.page,
+        });
+        let titles = this.state.titles;
+        const title = titles.find( function(title){
+            return title.pageId === pageId;
+        });
+        const index = titles.indexOf(title);
+        title.title = this.state.page.title;
+        titles[index] = title;
+        
+        this.setState({
+            titles : titles,
+        });
+    }
+
     createTitle(){
         var titles = this.state.titles;
         var defaultPage = {
@@ -187,6 +207,7 @@ class Board extends React.Component{
                 <Detail 
                     page={this.state.page}
                     changeData={ this.changeData.bind(this)}
+                    savePage={this.savePage.bind(this)}
                 />
             </div>
         );

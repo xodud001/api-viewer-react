@@ -14,6 +14,7 @@ export function Content(props){
             value={props.value} 
             onChange={props.onChange} 
             name={name}
+            placeholder={props.class}
             autoComplete="off"
         />
     );
