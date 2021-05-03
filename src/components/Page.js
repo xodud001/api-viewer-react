@@ -1,16 +1,49 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ParamWrapper from './ParamWrapper'
 
 import { Content } from './Content'
+import $ from "jquery";
 
 
+const DropDownTypes = (props) => {
+    return(
+        <div className="dropdown-content">
+            <ul>
+                <li>
+                    <div class="circle blue"></div>
+                    <button>GET</button>
+                </li>
+                <li>
+                    <div class="circle orange"></div>
+                    <button>POST</button>
+                </li>
+                <li>
+                    <div class="circle navy"></div>
+                    <button>DELETE</button>
+                </li>
+                <li>
+                    <div class="circle red"></div>
+                    <button>PATCH</button>
+                </li>
+            </ul>
+        </div>
+    );
+    
+}
 
 const Type = (props) => {
+    useEffect(()=>{
+        $('.detail .page .middle .type .dropbtn').click(function(){
+            $('.detail .page .middle .type').toggleClass('toggle');
+        });
+    });
     const type = props.value.toLowerCase();
     return(
-        <div className={[props.class, type].join(" ")}>
-            {props.value}
+        <div className={props.class}>
+            <button class={["dropbtn", type].join(" ")}>{props.value}</button>
+            
+            <DropDownTypes />
         </div>
     );
 }

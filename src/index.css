@@ -176,6 +176,7 @@ button{
     background-color: white;
     padding-left: 300px;
     padding-top: 60px;
+    padding-right: 30px;
 }
 
 .detail div{
@@ -208,30 +209,104 @@ button{
 }
 
 .detail .page .middle .type{
-    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin : 3px 0 3px 0;
-    padding: 0px 10px 0px 10px;
-    border-radius: 10px;
     font-weight: 700;
     font-size: 12px;
     color: white !important;
+    position: relative;
+    display: inline-block;
     margin-right: 10px;
 }
+
+.detail .page .middle .type .dropbtn{
+    height: 20px;
+    margin : 3px 0 3px 0;
+    padding: 0px 10px 0px 10px;
+    border-radius: 10px;
+}
+
+.detail .page .middle .type .dropdown-content{
+    left: -60%;
+    color : rgb(37, 37, 37) !important;
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 2px;
+}
+.detail .page .middle .toggle .dropdown-content{
+    display: block;
+}
+.detail .page .middle .type .dropdown-content ul{
+    padding : 5px 0 5px 0;
+}
+.detail .page .middle .type .dropdown-content ul li{
+    display: flex;
+    align-items: center;
+    padding : 5px 0 5px 0;
+    transition: ease-in 0.15s;
+}
+
+.detail .page .middle .type .dropdown-content ul li:hover{
+    background-color: rgb(238, 238, 238);
+}
+
+.detail .page .middle .type .dropdown-content ul li .circle{
+    margin: 0 10px 0 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    background-color: blue;
+}
+.detail .page .middle .type .dropdown-content ul li .blue{
+    background-color: blue;
+}
+.detail .page .middle .type .dropdown-content ul li .orange{
+    background-color: rgb(138, 207, 0);
+}
+.detail .page .middle .type .dropdown-content ul li .navy{
+    background-color: navy;
+}
+.detail .page .middle .type .dropdown-content ul li .red{
+    background-color: red;
+}
+.detail .page .middle .type .dropdown-content ul li button{
+    background-color: transparent !important;
+    color : rgb(37, 37, 37) !important;
+}
+
+
+
 .detail .page .middle .get{
     background-color: blue;
+}
+.detail .page .middle .type .get:hover {
+    background-color: rgb(0, 0, 197);
 }
 .detail .page .middle .post{
     background-color: rgb(138, 207, 0);
 }
-.detail .page .middle .petch{
+.detail .page .middle .type .post:hover{
+    background-color: rgb(114, 170, 2);
+}
+.detail .page .middle .patch{
     background-color: navy;
+}
+.detail .page .middle .type .patch:hover{
+    background-color: rgb(1, 1, 68);
 }
 .detail .page .middle .delete{
     background-color: red;
 }
+.detail .page .middle .type .delete:hover{
+    background-color: rgb(214, 2, 2);
+}
+
+
 .detail .page .middle .url{
     height: 30px;
     display: flex;

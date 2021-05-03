@@ -81,7 +81,21 @@ class Board extends React.Component{
     }
 
     savePage(){
-        var pageId = this.state.page.pageId;
+        var page = this.state.page;
+
+        if(page.title.length <= 0){
+            alert("문서의 제목을 입력하세요.");
+            return;
+        }
+        if(page.description.length <= 0){
+            alert("문서의 설명을 입력하세요.");
+            return;
+        }
+        if(page.url.length <= 0){
+            alert("문서의 URL을 입력하세요.");
+            return;
+        }
+
         axios({
             method: 'patch',
             url: createURL(`/page`),
@@ -89,7 +103,7 @@ class Board extends React.Component{
         });
         let titles = this.state.titles;
         const title = titles.find( function(title){
-            return title.pageId === pageId;
+            return title.pageId === page.pageId;
         });
         const index = titles.indexOf(title);
         title.title = this.state.page.title;
@@ -98,6 +112,7 @@ class Board extends React.Component{
         this.setState({
             titles : titles,
         });
+        alert("저장되었습니다.");
     }
 
     createTitle(){
