@@ -29,6 +29,34 @@ class Board extends React.Component{
         });
     }
 
+    changeRestApiType(e){
+        var newPage = this.state.page;
+        console.log(e.target.value);
+        switch(e.target.value){
+            case "GET":
+                newPage.crudType.crudId = 1;
+                newPage.crudType.type = "GET";
+                break;
+            case "POST":
+                newPage.crudType.crudId = 2;
+                newPage.crudType.type = "POST";
+                break;
+            case "DELETE":
+                newPage.crudType.crudId = 3;
+                newPage.crudType.type = "DELETE";
+                break;
+            case "PATCH":
+                newPage.crudType.crudId = 4;
+                newPage.crudType.type = "PATCH";
+                break;
+            default:
+                return;
+        }
+        this.setState({
+            page : newPage,
+        });
+    }
+
     setNewPage(value){
         this.setState({
             createNewPage : value,
@@ -94,6 +122,13 @@ class Board extends React.Component{
         if(page.url.length <= 0){
             alert("문서의 URL을 입력하세요.");
             return;
+        }
+        for(let i = 0 ; i < page.parameters.length ; i++){
+            let param = page.parameters[i];
+            if(param.name.length <= 0 || param.description.length <= 0){
+                alert("Paramter를 정확히 입력하세요.")
+                return;
+            }
         }
 
         axios({
@@ -208,6 +243,115 @@ class Board extends React.Component{
         });
     }
 
+    addParam(e){
+        var newData = {
+            "reqParamId": uuidv4(),
+            "name": "id",
+            "description": "Init id",
+            "dataType": {
+                "dataId": 1,
+                "type": "String"
+            },
+            "parameterType": {
+                "paramId": null,
+                "type": null
+            }
+        };
+        var newPage = this.state.page;
+        switch(e.target.value){
+            case "Path Parameters":
+                newData.parameterType.paramId = 1;
+                newData.parameterType.type = "Path Parameters";
+                break;
+            case "Query Parameters":
+                newData.parameterType.paramId = 2;
+                newData.parameterType.type = "Query Parameters";
+                break;
+            case "Form Data Parameters":
+                newData.parameterType.paramId = 3;
+                newData.parameterType.type = "Form Data Parameters";
+                break;
+            case "Body Parameters":
+                newData.parameterType.paramId = 4;
+                newData.parameterType.type = "Body Parameters";
+                break;
+            case "Headers":
+                newData.parameterType.paramId = 5;
+                newData.parameterType.type = "Headers";
+                break;
+            default:
+                return;
+        }
+        newPage.parameters.push(newData)
+        this.setState({
+            page : newPage,
+        });
+        console.log(newData);
+    }
+
+    removeParam(e){
+        let id = e.target.getAttribute('data-tag');
+        console.log(id);
+
+        let newPage = this.state.page;
+        let params = this.state.page.parameters;
+        const param = params.find( function(param){
+            return param.reqParamId === id;
+        });
+        const index = params.indexOf(param);
+        params.splice(index, 1);
+        newPage.parameters = params;
+        this.setState({
+            page : newPage,
+        });
+    }
+    
+    changeDataType(e){
+        let newPage = this.state.page;
+        let params = newPage.parameters;
+
+        var result = e.target.value.split(" ");
+        const param = params.find( function(param){
+            return param.reqParamId === result[1];
+        });
+        const index = params.indexOf(param);
+
+        switch(result[0]){
+            case "string":
+                param.dataType.dataId = 1;
+                param.dataType.type = "string";
+                break;
+            case "number":
+                param.dataType.dataId = 2;
+                param.dataType.type = "number";
+                break;
+            case "integer":
+                param.dataType.dataId = 3;
+                param.dataType.type = "integer";
+                break;
+            case "boolean":
+                param.dataType.dataId = 4;
+                param.dataType.type = "boolean";
+                break;
+            case "array":
+                param.dataType.dataId = 5;
+                param.dataType.type = "array";
+                break;
+            case "object":
+                param.dataType.dataId = 6;
+                param.dataType.type = "object";
+                break;
+            default:
+                return;
+        }
+
+        params[index] = param;
+        newPage.parameters = params;
+        this.setState({
+            page : newPage,
+        });
+    }
+
     render(){
         return (
             <div className="board">
@@ -223,6 +367,10 @@ class Board extends React.Component{
                     page={this.state.page}
                     changeData={ this.changeData.bind(this)}
                     savePage={this.savePage.bind(this)}
+                    changeRestApiType = {this.changeRestApiType.bind(this)}
+                    addParam = {this.addParam.bind(this)}
+                    removeParam ={this.removeParam.bind(this)}
+                    changeDataType={this.changeDataType.bind(this)}
                 />
             </div>
         );

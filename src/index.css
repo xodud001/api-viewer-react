@@ -34,6 +34,7 @@ input[type=text]:focus{
 button{
     border: none;
     display: block;
+    outline: none;
 }
 
 /* CLEARFIX & FLOAT */
@@ -116,6 +117,7 @@ button{
     display: block;
     width : 100%;
     border-left: 3px solid transparent;
+    transition: ease-in 0.15s;
 }
 .list ul .item:hover{
     background-color: #1e1e1e;
@@ -182,7 +184,9 @@ button{
 .detail div{
     color : black !important;
 }
-
+.detail .page{
+    margin-bottom: 100px;
+}
 .detail .page .top{
     padding-bottom: 30px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
@@ -196,6 +200,7 @@ button{
 }
 
 .detail .page .top .description{
+    width:100%;
     font-size: 18px;
     color: rgba(0, 0, 0, 0.4) !important;
     font-weight: 500;
@@ -225,10 +230,11 @@ button{
     margin : 3px 0 3px 0;
     padding: 0px 10px 0px 10px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .detail .page .middle .type .dropdown-content{
-    left: -60%;
+    left: -20%;
     color : rgb(37, 37, 37) !important;
     display: none;
     position: absolute;
@@ -242,13 +248,13 @@ button{
     display: block;
 }
 .detail .page .middle .type .dropdown-content ul{
-    padding : 5px 0 5px 0;
+    /* padding : 5px 0 5px 0; */
 }
 .detail .page .middle .type .dropdown-content ul li{
     display: flex;
     align-items: center;
-    padding : 5px 0 5px 0;
     transition: ease-in 0.15s;
+    padding: 5px 0 5px 0;
 }
 
 .detail .page .middle .type .dropdown-content ul li:hover{
@@ -327,7 +333,7 @@ button{
 }
 
 .detail .page .bottom .params-wrapper{
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 .detail .page .bottom .params-wrapper:last-child{
     margin-bottom: 0px !important;
@@ -335,20 +341,22 @@ button{
 
 .detail .page .bottom .params-wrapper .params-title{
     margin-left: 5px;
-    color :rgba(0, 0, 0, 0.8) !important;
+    color :rgba(0, 0, 0, 0.6) !important;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
 .detail .page .bottom .param-wrapper{
     border: 1px solid rgba(0, 0, 0, 0.1);
-    padding : 10px 10px 0px 10px;
+    padding : 0px 10px 0px 10px;
     border-radius: 5px;
-    
+}
+.detail .page .bottom .param-wrapper .container{
+    position: relative;
 }
 
 .detail .page .bottom .param-wrapper ul{
-    padding : 0px 0px 30px 0px;
+    padding : 15px 0px 15px 0px;
     display: flex;
     align-items: center;
 }
@@ -356,6 +364,7 @@ button{
 .detail .page .bottom .param-wrapper ul:last-child{
     padding : 0px 0px 10px 0px !important;
 }
+
 
 .detail .page .bottom .wrapper ul li{
     color: black;
@@ -365,20 +374,122 @@ button{
     color: rgba(0, 0, 0, 0.8);
 }
 .detail .page .bottom .wrapper ul .dataType{
-    width: 60px;
-    text-align: center;
-    margin-right: 20px;
-    padding: 3px 10px 3px 10px;
+    width: 120px;
+    text-align: left;
+    position: relative;;
+}
+.detail .page .bottom .wrapper ul .dataType .data-btn{
+    display: inline-block;
     font-size: 12px;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 2px 12px 2px 12px;
     background-color: rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
     letter-spacing: 1px;
+    height: 100%;
 }
+.detail .page .bottom .wrapper ul .toggle .dropdown-data{
+    display: block !important;
+}
+
+.detail .page .bottom .wrapper ul .dataType .dropdown-data{
+    left: -5%;
+    color : rgb(37, 37, 37) !important;
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 2px;
+}
+
+.detail .page .bottom .wrapper ul .dataType .dropdown-data ul{
+    display: block !important;
+}
+
+.detail .page .bottom .wrapper ul .dataType .dropdown-data ul button{
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    color : rgb(22, 22, 22) !important;
+    background: transparent;
+    padding: 5px 0 5px 14px;
+    transition: ease-in 0.15s;
+}
+.detail .page .bottom .wrapper ul .dataType .dropdown-data ul button:hover{
+    background: rgb(243, 243, 243);
+}
+
+
 .detail .page .bottom .wrapper ul .description{
     max-width: 600px;
     color: rgba(0, 0, 0, 0.7);
+}
+
+.detail .page .bottom .wrapper .remove{
+    background: transparent;
+    position: absolute;
+    right: 0%;
+    top:5%;
+}
+.detail .page .bottom .wrapper .remove i{
+    color: transparent;
+    transition: ease-in 0.15s;
+}
+
+.detail .page .bottom .wrapper ul:hover + .remove i{
+    color: thistle;
+}
+.detail .page .bottom .wrapper .remove i:hover{
+    color: rgb(141, 140, 141);
+}
+.detail .page .bottom .wrapper .add-param-wrapper{
+    position: relative;
+    display: inline-block;
+}
+
+.detail .page .bottom .wrapper .add-param-btn{
+    background-color: transparent;
+    color: thistle;
+    padding-left: 22px; 
+    background: url('./icon/plus.png') left no-repeat;
+    font-size: 16px;
+    cursor: pointer;
+    transition: ease-in 0.15s;
+}
+
+.detail .page .bottom .wrapper .add-param-btn:hover{
+    color: teal;
+}
+
+.detail .page .bottom .wrapper .dropdown-param button{
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    color : rgb(22, 22, 22) !important;
+    background: transparent;
+    padding: 5px 0 5px 14px;
+    transition: ease-in 0.15s;
+}
+.detail .page .bottom .wrapper .dropdown-param button:hover{
+    background: rgb(243, 243, 243);
+}
+
+.detail .page .bottom .wrapper .dropdown-param{
+    color : rgb(37, 37, 37) !important;
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 2px;
+}
+
+.detail .page .bottom .wrapper .toggle .dropdown-param{
+    display: block;
 }
 
 .detail .page .save{
@@ -403,3 +514,4 @@ button{
     background-color: #4A4F47;
     color : white
 }
+

@@ -10,7 +10,7 @@ function ParamWrapper(props){
             </div>
             <div className="param-wrapper">
                 {props.params.map( param =>(
-                    <Request param={param} page={ props.page } changeData={ props.changeData} />
+                    <Request param={param} page={ props.page } changeData={ props.changeData} removeParam={props.removeParam} changeDataType={props.changeDataType} />
                 ))}
             </div>
             

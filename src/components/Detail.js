@@ -9,6 +9,10 @@ class Detail extends React.Component{
                     page={this.props.page}
                     changeData={this.props.changeData}
                     savePage={this.props.savePage}
+                    changeRestApiType={this.props.changeRestApiType}
+                    addParam={this.props.addParam}
+                    removeParam={this.props.removeParam}
+                    changeDataType={this.props.changeDataType}
                 />
             ); 
         }
